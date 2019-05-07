@@ -1,10 +1,9 @@
 <template>
   <section class="container">
     <div>
-      <div>adfasfhk</div>
-      <nuxt-link to="/about">首页</nuxt-link>
+      <div>about</div>
       <div v-for="item in posts" :key="item.id">
-        <span>{{item}}</span>
+        <span>{{item.title}}</span>
       </div>
     </div>
   </section>
@@ -15,10 +14,11 @@
 
   export default {
     components: {},
-    async asyncData() {
-      const posts = await axios.get('http://visney.cn:81/NavigationMeta/get/12');
-      const posts1 =  await axios.get('https://jsonplaceholder.typicode.com/posts')
-      return {posts: Object.keys(posts.data)}
+    asyncData(conttxt){
+      return axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then((res) => {
+          return { posts: res.data.slice(0, 5) }
+        })
     },
     head: {
       title: 'List of posts'
