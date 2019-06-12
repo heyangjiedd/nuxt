@@ -16,9 +16,7 @@
   export default {
     components: {},
     async asyncData() {
-      const posts = await axios.get('http://visney.cn:81/NavigationMeta/get/12');
-      const posts1 =  await axios.get('https://jsonplaceholder.typicode.com/posts')
-      return {posts: Object.keys(posts.data)}
+      return {posts: [1,34,54]}
     },
     head: {
       title: 'List of posts'
